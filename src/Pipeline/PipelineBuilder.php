@@ -10,6 +10,7 @@ use Nip\Locale\Detector\Commands\Command;
 use Nip\Locale\Detector\Exceptions\InvalidPipelineAlias;
 use Nip\Locale\Detector\Pipeline\Stages\CookieStage;
 use Nip\Locale\Detector\Pipeline\Stages\HttpAcceptLanguageStage;
+use Nip\Locale\Detector\Pipeline\Stages\QueryStage;
 
 /**
  * Class MethodsPipeline
@@ -18,7 +19,7 @@ use Nip\Locale\Detector\Pipeline\Stages\HttpAcceptLanguageStage;
 class PipelineBuilder extends AbstractBuilder
 {
     protected static $aliases = [
-//        'query'          => QueryStrategy::class,
+        'query' => QueryStage::class,
 //        'uripath'        => UriPathStrategy::class,
 //        'host'           => HostStrategy::class,
         'cookie' => CookieStage::class,
@@ -30,7 +31,7 @@ class PipelineBuilder extends AbstractBuilder
      * @param $stages
      * @return PipelineBuilder
      */
-    public static function newFromStages($stages)
+    public static function newFromStages($stages = null)
     {
         $builder = new static();
         $builder->initStagesFromArray($stages);

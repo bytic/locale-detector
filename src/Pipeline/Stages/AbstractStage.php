@@ -57,6 +57,29 @@ abstract class AbstractStage implements StageInterface
     }
 
     /**
+     * @param $locale
+     * @throws \Nip\Locale\Detector\Exceptions\InvalidLocale
+     */
+    protected function checkAndSetLocale($locale)
+    {
+        if ($this->isValidLocaleString($locale)) {
+            $this->getCommand()->setLocale($locale);
+        }
+    }
+
+    /**
+     * @param $locale
+     * @return bool
+     */
+    protected function isValidLocaleString($locale)
+    {
+        if (empty($locale)) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
      * @return bool
      */
     protected function isHttpRequest()

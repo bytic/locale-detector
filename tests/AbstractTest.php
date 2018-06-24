@@ -1,6 +1,6 @@
 <?php
 
-namespace Nip\Locale\Detector;
+namespace Nip\Locale\Detector\Tests;
 
 use PHPUnit\Framework\TestCase;
 

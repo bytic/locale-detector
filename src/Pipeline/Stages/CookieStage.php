@@ -22,10 +22,11 @@ class CookieStage extends AbstractStage
      *
      * @var string
      */
-    protected $cookieValue = null;
+    protected $cookieValue = false;
 
     /**
      * @return void
+     * @throws \Nip\Locale\Detector\Exceptions\InvalidLocale
      */
     public function processCommand()
     {
@@ -34,7 +35,7 @@ class CookieStage extends AbstractStage
         }
 
         if ($this->hasCookie()) {
-            $this->getCommand()->setLocale($this->getCookieValue());
+            $this->checkAndSetLocale($this->getCookieValue());
         }
     }
 
@@ -43,7 +44,7 @@ class CookieStage extends AbstractStage
      */
     public function getCookieValue(): string
     {
-        if ($this->cookieValue === null) {
+        if ($this->cookieValue === false) {
             $this->setCookieValue($this->generateCookieValue());
         }
         return $this->cookieValue;

@@ -12,6 +12,7 @@ class HttpAcceptLanguageStage extends AbstractStage
 {
     /**
      * @return void
+     * @throws \Nip\Locale\Detector\Exceptions\InvalidLocale
      */
     public function processCommand()
     {
@@ -30,6 +31,6 @@ class HttpAcceptLanguageStage extends AbstractStage
 //        }
 
         $language = $this->getRequest()->getPreferredLanguage();
-        $this->getCommand()->setLocale($language);
+        $this->checkAndSetLocale($language);
     }
 }

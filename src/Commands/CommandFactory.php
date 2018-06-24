@@ -14,7 +14,7 @@ class CommandFactory
      * @param ServerRequestInterface|null $request
      * @return Command
      */
-    public static function createFromRequest(ServerRequestInterface $request = null): Command
+    public static function createFromRequest($request = null): Command
     {
         $command = new Command();
         $command->setRequest($request);
