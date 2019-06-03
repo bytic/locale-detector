@@ -14,12 +14,12 @@ class QueryStage extends AbstractStage
      *
      * @var string
      */
-    const QUERY_KEY = 'lang';
+    const QUERY_KEY = ['lang', 'language'];
 
     /**
      * Query key to use for request
      *
-     * @var string
+     * @var string[]
      */
     protected $queryKey;
 
@@ -58,17 +58,20 @@ class QueryStage extends AbstractStage
      */
     public function generateQueryValue()
     {
-        $queryKey = $this->getQueryKey();
+        $queryKeys = $this->getQueryKey();
         $query = $this->getRequest()->query;
-        if ($query->has($queryKey)) {
-            $value = $query->get($queryKey);
-            return $value;
+
+        foreach ($queryKeys as $queryKey) {
+            if ($query->has($queryKey)) {
+                $value = $query->get($queryKey);
+                return $value;
+            }
         }
         return false;
     }
 
     /**
-     * @return string
+     * @return string[]
      */
     public function getQueryKey()
     {
