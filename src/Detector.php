@@ -3,6 +3,7 @@
 namespace Nip\Locale\Detector;
 
 use Nip\Locale\Detector\Commands\CommandFactory;
+use Nip\Locale\Detector\Traits\HasConfigTrait;
 
 /**
  * Class Detector
@@ -10,6 +11,7 @@ use Nip\Locale\Detector\Commands\CommandFactory;
  */
 class Detector
 {
+    use HasConfigTrait;
 
     /**
      * @param $request

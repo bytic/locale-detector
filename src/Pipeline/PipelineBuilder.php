@@ -78,7 +78,7 @@ class PipelineBuilder extends AbstractBuilder
     /**
      * Build a new Pipeline object
      *
-     * @param  ProcessorInterface|null $processor
+     * @param ProcessorInterface|null $processor
      *
      * @return PipelineInterface
      */
