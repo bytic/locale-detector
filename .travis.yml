@@ -4,6 +4,8 @@ addons:
   apt:
     packages:
       - locales
+      - language-pack-ro
+
 php:
   - 7.1
 
