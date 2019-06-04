@@ -33,6 +33,6 @@ class LocalePersist
      */
     protected static function persistInCookie($locale)
     {
-        $_COOKIE[CookieStage::COOKIE_NAME] = $locale;
+        setcookie(CookieStage::COOKIE_NAME, $locale);
     }
 }
