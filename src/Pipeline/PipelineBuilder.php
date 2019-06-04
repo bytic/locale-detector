@@ -11,6 +11,7 @@ use Nip\Locale\Detector\Exceptions\InvalidPipelineAlias;
 use Nip\Locale\Detector\Pipeline\Stages\CookieStage;
 use Nip\Locale\Detector\Pipeline\Stages\HttpAcceptLanguageStage;
 use Nip\Locale\Detector\Pipeline\Stages\QueryStage;
+use Nip\Locale\Detector\Traits\HasConfigTrait;
 
 /**
  * Class MethodsPipeline

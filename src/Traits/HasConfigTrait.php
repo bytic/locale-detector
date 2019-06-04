@@ -34,7 +34,7 @@ trait HasConfigTrait
     /**
      * @param $data
      */
-    public function setConfigFromArray($data)
+    public static function setConfigFromArray($data)
     {
         static::getConfig()->init($data);
     }
@@ -46,6 +46,6 @@ trait HasConfigTrait
      */
     public static function getConfigValue($key, $default = null)
     {
-        return static::getConfig()->get($key,$default);
+        return static::getConfig()->get($key, $default);
     }
 }

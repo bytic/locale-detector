@@ -31,6 +31,15 @@ class Config
 
     /**
      * @param $key
+     * @return bool
+     */
+    public function has($key)
+    {
+        return isset($this->data[$key]);
+    }
+
+    /**
+     * @param $key
      * @param null $default
      * @return mixed|null
      */

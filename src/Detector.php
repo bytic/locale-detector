@@ -4,6 +4,7 @@ namespace Nip\Locale\Detector;
 
 use Nip\Locale\Detector\Commands\CommandFactory;
 use Nip\Locale\Detector\Traits\HasConfigTrait;
+use Nip\Locale\Detector\Traits\HasPipelineTrait;
 
 /**
  * Class Detector
@@ -12,6 +13,7 @@ use Nip\Locale\Detector\Traits\HasConfigTrait;
 class Detector
 {
     use HasConfigTrait;
+    use HasPipelineTrait;
 
     /**
      * @param $request
@@ -26,15 +28,5 @@ class Detector
         $pipeline = static::buildPipeline($stages);
         $command = $pipeline->process($command);
         return $command->getLocale();
-    }
-
-    /**
-     * @param null $stages
-     * @return \League\Pipeline\Pipeline|\League\Pipeline\PipelineInterface
-     */
-    protected static function buildPipeline($stages = null)
-    {
-        $pipeline = Pipeline\PipelineBuilder::newFromStages($stages);
-        return $pipeline->build();
     }
 }
