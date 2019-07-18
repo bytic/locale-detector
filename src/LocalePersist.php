@@ -33,6 +33,6 @@ class LocalePersist
      */
     protected static function persistInCookie($locale)
     {
-        setcookie(CookieStage::COOKIE_NAME, $locale);
+        setcookie(CookieStage::COOKIE_NAME, $locale, time() + (86400 * 30), "/");
     }
 }

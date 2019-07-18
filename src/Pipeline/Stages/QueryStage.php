@@ -12,7 +12,7 @@ class QueryStage extends AbstractStage
     /**
      * Default query key
      *
-     * @var string
+     * @var array
      */
     const QUERY_KEY = ['lang', 'language'];
 
