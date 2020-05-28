@@ -4,6 +4,7 @@ addons:
   apt:
     packages:
       - locales
+      - language-pack-en
       - language-pack-ro
 
 php:
@@ -12,6 +13,8 @@ php:
   - 7.4
 
 before_script:
+  - sudo apt-get update
+  - sudo locale-gen --no-purge --lang ro_RO.UTF-8
   - composer install --no-interaction
 
 script:
