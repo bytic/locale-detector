@@ -1,11 +1,11 @@
 language: php
 
 addons:
-  apt:
-    packages:
-      - locales
-      - language-pack-en
-      - language-pack-ro
+  apt_packages:
+    - locales
+    - language-pack-en  
+    - language-pack-ro
+    - language-pack-ro-base
 
 php:
   - 7.2
