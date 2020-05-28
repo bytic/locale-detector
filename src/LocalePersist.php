@@ -3,6 +3,7 @@
 namespace Nip\Locale\Detector;
 
 use Nip\Locale\Detector\Pipeline\Stages\CookieStage;
+use Symfony\Component\Intl\Locale\Locale;
 
 /**
  * Class LocalePersist
@@ -15,6 +16,7 @@ class LocalePersist
      */
     public static function persist($locale)
     {
+        $locale = \Locale::canonicalize($locale);
         self::setEnviroment($locale);
         self::persistInCookie($locale);
     }
@@ -24,8 +26,9 @@ class LocalePersist
      */
     public static function setEnviroment($locale)
     {
+        $locale = \Locale::canonicalize($locale);
         setlocale(LC_ALL, $locale);
-        setlocale(LC_NUMERIC, 'en_US');
+        setlocale(LC_NUMERIC, 'C');
     }
 
     /**
