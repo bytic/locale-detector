@@ -3,7 +3,7 @@ language: php
 addons:
   apt_packages:
     - locales
-    - language-pack-en  
+    - language-pack-en
     - language-pack-ro
     - language-pack-ro-base
 

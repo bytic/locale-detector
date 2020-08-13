@@ -73,7 +73,7 @@ class PipelineBuilder extends AbstractBuilder
      */
     public static function getDefaultStages()
     {
-        return array_keys(static::$aliases);
+        return ['query', 'cookie'];
     }
 
     /**
