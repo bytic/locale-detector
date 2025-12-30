@@ -2,6 +2,7 @@
 
 namespace Nip\Locale\Detector\Tests;
 
+use IntlDateFormatter;
 use Nip\Locale\Detector\LocalePersist;
 
 /**
@@ -18,8 +19,13 @@ class LocalePersistTest extends AbstractTest
     public function testSetEnviroment($locale, $value)
     {
         LocalePersist::setEnviroment($locale);
+        $dateTimeObj = new \DateTime('next Monday');
+        $dateFormatted = IntlDateFormatter::formatObject(
+            $dateTimeObj,
+            'EEEE',
+        );
 
-        self::assertSame($value, strftime('%A', strtotime('next Monday')));
+        self::assertSame($value, $dateFormatted);
     }
 
     /**
