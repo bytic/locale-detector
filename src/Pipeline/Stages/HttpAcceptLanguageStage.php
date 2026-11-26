@@ -2,7 +2,8 @@
 
 namespace Nip\Locale\Detector\Pipeline\Stages;
 
-use Locale;
+use Psr\Http\Message\ServerRequestInterface;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class HttpAcceptLanguageStage
@@ -20,17 +21,12 @@ class HttpAcceptLanguageStage extends AbstractStage
             return;
         }
 
-//        $language = $this->getRequest()->getLanguages();
-//        foreach ($languages as $language) {
-//            if (!$lookup) {
-//                return $locale;
-//            }
-//            if ($match = Locale::lookup($supported, $locale)) {
-//                return $match;
-//            }
-//        }
+        $request = $this->getRequest();
+        if ($request instanceof ServerRequestInterface) {
+            $request = new Request(server: ['HTTP_ACCEPT_LANGUAGE' => $request->getHeaderLine('Accept-Language')]);
+        }
 
-        $language = $this->getRequest()->getPreferredLanguage();
+        $language = $request->getPreferredLanguage();
         $this->checkAndSetLocale($language);
     }
 }

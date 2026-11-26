@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 class Command
 {
     /**
-     * @var ServerRequestInterface|Request
+     * @var ServerRequestInterface|Request|null
      */
     protected $request;
 
@@ -22,7 +22,7 @@ class Command
     protected $locale = null;
 
     /**
-     * @return ServerRequestInterface|Request
+     * @return ServerRequestInterface|Request|null
      */
     public function getRequest()
     {
@@ -30,7 +30,7 @@ class Command
     }
 
     /**
-     * @param ServerRequestInterface|Request $request
+     * @param ServerRequestInterface|Request|null $request
      */
     public function setRequest($request)
     {

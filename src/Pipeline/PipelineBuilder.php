@@ -83,7 +83,7 @@ class PipelineBuilder extends AbstractBuilder
      *
      * @return PipelineInterface
      */
-    public function build(ProcessorInterface $processor = null): PipelineInterface
+    public function build(?ProcessorInterface $processor = null): PipelineInterface
     {
         if ($processor == null) {
             $processor = new InterruptibleProcessor(

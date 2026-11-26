@@ -2,6 +2,9 @@
 
 namespace Nip\Locale\Detector\Pipeline\Stages;
 
+use Psr\Http\Message\ServerRequestInterface;
+use Symfony\Component\HttpFoundation\InputBag;
+
 /**
  * Class QueryStage
  * @package Nip\Dispatcher\Resolver\Pipeline\Stages
@@ -59,12 +62,12 @@ class QueryStage extends AbstractStage
     public function generateQueryValue()
     {
         $queryKeys = $this->getQueryKey();
-        $query = $this->getRequest()->query;
+        $request = $this->getRequest();
+        $query = $request instanceof ServerRequestInterface ? new InputBag($request->getQueryParams()) : $request->query;
 
         foreach ($queryKeys as $queryKey) {
             if ($query->has($queryKey)) {
-                $value = $query->get($queryKey);
-                return $value;
+                return $query->get($queryKey);
             }
         }
         return false;

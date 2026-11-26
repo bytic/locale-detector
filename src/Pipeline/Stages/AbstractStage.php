@@ -3,6 +3,7 @@
 namespace Nip\Locale\Detector\Pipeline\Stages;
 
 use Nip\Locale\Detector\Commands\Command;
+use Psr\Http\Message\ServerRequestInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -49,7 +50,7 @@ abstract class AbstractStage implements StageInterface
     }
 
     /**
-     * @return \Psr\Http\Message\ServerRequestInterface|\Symfony\Component\HttpFoundation\Request
+     * @return ServerRequestInterface|Request|null
      */
     protected function getRequest()
     {
@@ -84,6 +85,6 @@ abstract class AbstractStage implements StageInterface
      */
     protected function isHttpRequest()
     {
-        return $this->getRequest() instanceof Request;
+        return $this->getRequest() instanceof Request || $this->getRequest() instanceof ServerRequestInterface;
     }
 }
