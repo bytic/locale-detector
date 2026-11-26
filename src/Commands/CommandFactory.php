@@ -3,6 +3,7 @@
 namespace Nip\Locale\Detector\Commands;
 
 use Psr\Http\Message\ServerRequestInterface;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class CommandFactory
@@ -11,7 +12,7 @@ use Psr\Http\Message\ServerRequestInterface;
 class CommandFactory
 {
     /**
-     * @param ServerRequestInterface|null $request
+     * @param ServerRequestInterface|Request|null $request
      * @return Command
      */
     public static function createFromRequest($request = null): Command

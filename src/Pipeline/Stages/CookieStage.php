@@ -2,6 +2,9 @@
 
 namespace Nip\Locale\Detector\Pipeline\Stages;
 
+use Psr\Http\Message\ServerRequestInterface;
+use Symfony\Component\HttpFoundation\InputBag;
+
 /**
  * Class CookieStage
  * @package Nip\Dispatcher\Resolver\Pipeline\Stages
@@ -40,12 +43,15 @@ class CookieStage extends AbstractStage
     }
 
     /**
-     * @return string
+     * @return string|false
      */
-    public function getCookieValue(): string
+    public function getCookieValue(): string|false
     {
         if ($this->cookieValue === false) {
-            $this->setCookieValue($this->generateCookieValue());
+            $value = $this->generateCookieValue();
+            if ($value !== false && $value !== null) {
+                $this->setCookieValue($value);
+            }
         }
         return $this->cookieValue;
     }
@@ -59,15 +65,15 @@ class CookieStage extends AbstractStage
     }
 
     /**
-     * @return bool
+     * @return mixed
      */
     public function generateCookieValue()
     {
         $cookieName = $this->getCookieName();
-        $cookieJar = $this->getRequest()->cookies;
+        $request = $this->getRequest();
+        $cookieJar = $request instanceof ServerRequestInterface ? new InputBag($request->getCookieParams()) : $request->cookies;
         if ($cookieJar->has($cookieName)) {
-            $cookie = $cookieJar->get($cookieName);
-            return $cookie;
+            return $cookieJar->get($cookieName);
         }
         return false;
     }
